@@ -1,0 +1,17 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <title>一覧ページ</title>
+        <link rel="stylesheet" type="text/css" href="{% static 'word/css/lists.css' %}"/>
+    </head>
+    <body>
+        {% for word in wordliste %}
+            <ul>
+                <li>{{ word.num }}. <a href="{% url 'word:detail' word.id %}">{{ word.vocab }}</a></li>
+            </ul>
+            <br>
+        {% endfor %}
+    </body>
+</html>

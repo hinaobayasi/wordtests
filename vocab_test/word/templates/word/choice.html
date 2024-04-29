@@ -1,0 +1,21 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>選択問題</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'word/css/choice.css' %}"/>
+</head>
+<body>
+    <h1>選択問題</h1>
+    <h2>{{ question.vocab }}</h2>
+    <form  action="{% url 'word:choiceans' question.id %}" method="POST">
+        {% csrf_token %}
+        {% for sen in sentaku_list %}
+            <label><input type="radio", name="cho", value={{sen.mean}}>{{ sen.mean }}</label>
+            <br>
+        {% endfor %}
+        <input type="submit" name="submit" value="送信">
+    </form>
+</body>
+</html>

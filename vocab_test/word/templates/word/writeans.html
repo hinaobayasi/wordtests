@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>書き正解</title>
+    </head>
+    <body>
+        <h3>答え: {{ question.vocab }}</h3>
+        <p>{{ question.mean }}</p>
+        <form action="{% url 'word:detail' question.id %}" method="POST">
+            {% csrf_token %}
+            <input type="submit" name="check" value="詳細ページへ">
+        </form>
+        {% if typ == "1" %}
+            <h4>正解</h4>
+        {% elif typ == "2" %}
+            <h4>不正解</h4>
+            <h3>あなたの回答</h3>
+            <p>{{ text.vocab }}</p>
+            <p>{{ text.mean }}</p>
+            <form action="{% url 'word:detail' text.id %}" method="POST">
+                {% csrf_token %}
+                <input type="submit" name="check" value="詳細ページへ">
+            </form>
+        {% elif typ == "3" %}
+            <p>このデータベース上にあなたの回答はありません</p>
+        
+        {% endif %}
+        <br><br>
+        <form action="{% url 'word:write' %}" method="POST">
+            {% csrf_token %}
+            <input type="submit" name="submit" value="戻る">
+        </form>
+    </body>
+</html>
