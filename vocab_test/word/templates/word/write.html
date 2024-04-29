@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>書き問題</title>
+    </head>
+    <body>
+        <h2>wordtest</h2>
+        <form action="{% url 'word:writeans' question.id %}" method="POST">
+            {% csrf_token %}
+            <label>記入:<input type="text" name="text"></label>
+            <input type="submit" name="submit" value="送信">
+            <p>{{ question.mean }}</p>
+        </form>    
+    </body>
+</html>
